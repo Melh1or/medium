@@ -26,7 +26,14 @@ const Feed = {
   },
 };
 
+const Article = {
+  fetchArticle(slug) {
+    return axios.get(`/articles/${slug}`);
+  },
+};
+
 export default {
   Auth,
-  Feed
+  Feed,
+  Article,
 };

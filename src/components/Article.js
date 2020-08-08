@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, generatePath } from "react-router-dom";
 import { routes } from "../pages/routes";
+import TagList from "./TagList";
 
 const Article = ({
   article: {
@@ -38,6 +39,7 @@ const Article = ({
         <h1>{title}</h1>
         <p>{description}</p>
         <span>Read more...</span>
+        <TagList tagList={tagList} />
       </Link>
     </div>
   );
