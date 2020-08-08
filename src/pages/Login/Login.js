@@ -1,11 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { routes } from "../routes";
 
 import LoginForm from "./components/LoginForm";
+import operations from "../../store/login/operations";
+import { viewerSelectors } from "../../store/viewer";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const viewer = useSelector(viewerSelectors.getViewer);
+
+  const loginFormHandler = ({ email, password }) => {
+    dispatch(operations.login({ email, password }));
+  };
+
+  if (viewer) {
+    return <Redirect to={routes.home} />;
+  }
+
   return (
     <div className="auth-page">
       <div className="container page">
@@ -15,7 +29,7 @@ const Login = () => {
             <p className="text-xs-center">
               <Link to={routes.register}>Need an account?</Link>
             </p>
-            <LoginForm />
+            <LoginForm loginFormHandler={loginFormHandler} />
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ export const routes = {
   register: "/register",
   create: "/create",
   settings: "/settings",
+  article: "/article/:slug"
 };
 
 const Router = () => (
