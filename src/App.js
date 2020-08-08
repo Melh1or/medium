@@ -1,7 +1,8 @@
 import React from "react";
+import Router from "./pages/routes";
 
 const App = () => {
-  return <div className="App">Medium</div>;
+  return <Router />;
 };
 
 export default App;
