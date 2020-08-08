@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Home from "./Home/Home";
+import Article from "./Article/Article";
 
 export const routes = {
   home: "/",
@@ -26,6 +27,7 @@ const Router = () => (
       <Route path={routes.home} component={Home} exact />
       <Route path={routes.login} component={Login} />
       <Route path={routes.register} component={Register} />
+      <Route path={routes.article} component={Article} />
     </Switch>
     <Footer />
   </BrowserRouter>
