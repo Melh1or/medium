@@ -27,22 +27,20 @@ const Article = () => {
   if (articleProps.item === null) return <Loading />;
 
   const { author, body, createdAt, description, favoritesCount, favorited, title, tagList } = articleProps.item;
-  const favoriteTitle = favorited ? "Unfavorite" : "Favorite"
-  const favoriteClasses = favorited ? "btn btn-sm btn-outline-primary" : "btn btn-sm btn-primary"
+  // const favoriteTitle = favorited ? "Unfavorite" : "Favorite"
+  // const favoriteClasses = favorited ? "btn btn-sm btn-outline-primary" : "btn btn-sm btn-primary"
 
   const commentFormHandler = (body) => {
     dispatch(articleOperations.postComment(slug, body));
   }
 
-  const favoriteClick = () => {
-    if (favorited) {
-      dispatch(articleOperations.unFavoriteArticle(slug))
-    } else {
-      dispatch(articleOperations.favoriteArticle(slug))
-    }
-  }
-
-  console.log("components render", favorited)
+  // const favoriteClick = () => {
+  //   if (favorited) {
+  //     dispatch(articleOperations.unFavoriteArticle(slug))
+  //   } else {
+  //     dispatch(articleOperations.favoriteArticle(slug))
+  //   }
+  // }
 
   return (
     <div className="article-page">
@@ -84,7 +82,7 @@ const Article = () => {
         </div>
         <hr />
 
-        <div className="article-actions">
+        {/* <div className="article-actions">
           <div className="article-meta">
             <Link to="">
               <img src={author.image} />
@@ -106,7 +104,7 @@ const Article = () => {
               <span className="counter">({favoritesCount})</span>
             </button>
           </div>
-        </div>
+        </div> */}
 
         <div className="row">
           <div className="col-xs-12 col-md-8 offset-md-2">

@@ -19,13 +19,13 @@ const Article = ({
   return (
     <div className="article-preview">
       <div className="article-meta">
-        <Link to={`/@${author.username}`}>
+        <Link to={`/profiles/${author.username}`}>
           <img src={author.image} />
         </Link>
         <div className="info">
-          <a href="" className="author">
+          <Link to={`/profiles/${author.username}`} className="author">
             {author.username}
-          </a>
+          </Link>
           <span className="date">{createdAt}</span>
         </div>
         <button className="btn btn-outline-primary btn-sm pull-xs-right">

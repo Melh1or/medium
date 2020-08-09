@@ -35,7 +35,7 @@ const Header = () => {
         </NavLink>
       </li>
       <li className="nav-item">
-        <NavLink className="nav-link" to={"/user"}>
+        <NavLink className="nav-link" to={`/profiles/${viewer.username}`}>
           {viewer && viewer.username}
         </NavLink>
       </li>

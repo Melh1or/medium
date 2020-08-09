@@ -10,6 +10,7 @@ import feed from "./feed";
 import article from "./article";
 import tags from "./tags";
 import createArticle from "./createArticle";
+import profile from "./profile";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [thunk];
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   article,
   tags,
   createArticle,
+  profile
 });
 
 const store = createStore(

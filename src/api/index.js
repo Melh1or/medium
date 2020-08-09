@@ -66,6 +66,12 @@ const Article = {
   },
 };
 
+const Profiles = {
+  getProfile(username) {
+    return axios.get(`/profiles/${username}`)
+  }
+}
+
 const Tags = {
   fetchTags() {
     return axios.get("/tags");
@@ -77,4 +83,5 @@ export default {
   Feed,
   Article,
   Tags,
+  Profiles
 };

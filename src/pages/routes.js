@@ -11,6 +11,7 @@ import Register from "./Register/Register";
 import Home from "./Home/Home";
 import Article from "./Article/Article";
 import CreateArticle from "./CreateArticle/CreateArticle";
+import Profile from "./Profile/Profile";
 
 export const routes = {
   home: "/",
@@ -31,6 +32,7 @@ const Router = () => (
       <Route path={routes.register} component={Register} />
       <Route path={routes.article} component={Article} />
       <Route path={routes.create} component={CreateArticle} />
+      <Route path={routes.profile} component={Profile} />
     </Switch>
     <Footer />
   </BrowserRouter>
