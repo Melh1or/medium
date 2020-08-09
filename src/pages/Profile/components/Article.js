@@ -1,33 +1,45 @@
 import React from "react";
+import { Link, generatePath } from "react-router-dom";
 
-const Article = () => {
+import { routes } from "../../routes";
+
+const Article = ({
+  article: { title, tagList, favoritesCount, createdAt, author, description, slug },
+}) => {
   return (
     <div className="article-preview">
       <div className="article-meta">
-        <a href="">
-          <img src="http://i.imgur.com/N4VcUeJ.jpg" />
-        </a>
+        <Link to={generatePath(routes.profile, { username: author.username })}>
+          <img src={author.image} />
+        </Link>
         <div className="info">
-          <a href="" className="author">
-            Albert Pai
-          </a>
-          <span className="date">January 20th</span>
+          <Link
+            to={generatePath(routes.profile, { username: author.username })}
+            className="author"
+          >
+            {author.username}
+          </Link>
+          <span className="date">{createdAt}</span>
         </div>
         <button className="btn btn-outline-primary btn-sm pull-xs-right">
-          <i className="ion-heart"></i> 32
+          <i className="ion-heart"></i> {favoritesCount}
         </button>
       </div>
-      <a href="" className="preview-link">
-        <h1>
-          The song you won't ever stop singing. No matter how hard you try.
-        </h1>
-        <p>This is the description for the post.</p>
+      <Link
+        to={generatePath(routes.article, { slug })}
+        className="preview-link"
+      >
+        <h1>{title}</h1>
+        <p>{description}</p>
         <span>Read more...</span>
         <ul className="tag-list">
-          <li className="tag-default tag-pill tag-outline">Music</li>
-          <li className="tag-default tag-pill tag-outline">Song</li>
+          {tagList.map((tag, i) => (
+            <li key={i} className="tag-default tag-pill tag-outline">
+              {tag}
+            </li>
+          ))}
         </ul>
-      </a>
+      </Link>
     </div>
   );
 };

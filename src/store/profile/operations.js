@@ -14,6 +14,20 @@ const fetchProfile = (username) => async (dispatch) => {
   }
 };
 
+const fetchProfileArticles = (username) => async (dispatch) => {
+  try {
+    dispatch(actions.fetchProfileArticlesStart());
+
+    const res = await Api.Article.fetchUserArticles(username);
+    
+    dispatch(actions.fetchProfileArticlesSuccess({ ...res.data }));
+  } catch (error) {
+    console.log(error);
+    dispatch(actions.fetchProfileArticlesError(error));
+  }
+};
+
 export default {
   fetchProfile,
+  fetchProfileArticles,
 };

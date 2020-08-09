@@ -7,16 +7,18 @@ import { profileOperations, profileSelectors } from "../../store/profile";
 
 import Loading from "../../components/Loading";
 import { viewerSelectors } from "../../store/viewer";
+import Article from "./components/Article";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const { username } = useParams();
   const viewer = useSelector(viewerSelectors.getViewer);
   const { isLoading, profile } = useSelector(profileSelectors.getProfile);
+  const { isLoading: articlesLoading, articles } = useSelector(profileSelectors.getProfileArticles);
 
   useEffect(() => {
     dispatch(profileOperations.fetchProfile(username));
-    
+    dispatch(profileOperations.fetchProfileArticles(username));
   }, []);
 
   if (isLoading || profile === null) return <Loading />;
@@ -64,6 +66,11 @@ const Profile = () => {
                   </a>
                 </li>
               </ul>
+
+              {articlesLoading || articles === null
+                ? <Loading />
+                : articles.map(article => <Article key={article.slug} article={article} />)
+              }
 
             </div>
           </div>

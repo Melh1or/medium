@@ -64,6 +64,9 @@ const Article = {
   unFavoriteArticle(slug) {
     return axios.delete(`/articles/${slug}/favorite`);
   },
+  fetchUserArticles(username, limit = 5, offset = 0) {
+    return axios.get(`/articles?author=${username}&limit=${limit}&offset=${offset}`)
+  }
 };
 
 const Profiles = {

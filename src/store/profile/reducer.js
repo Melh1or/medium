@@ -1,10 +1,19 @@
 import types from "./types";
 
 const initialState = {
-  isLoading: false,
-  isError: false,
-  error: null,
-  profile: null,
+  fetchProfile: {
+    isLoading: false,
+    isError: false,
+    error: null,
+    profile: null,
+  },
+  fetchArticles: {
+    isLoading: false,
+    isError: false,
+    error: null,
+    articles: null,
+    articlesCount: null
+  },
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -12,23 +21,62 @@ export default (state = initialState, { type, payload }) => {
     case types.FETCH_PROFILE_START:
       return {
         ...state,
-        isLoading: true,
-        isError: false,
-        error: null,
+        fetchProfile: {
+          ...state.fetchProfile,
+          isLoading: true,
+          isError: false,
+          error: null,
+        },
       };
     case types.FETCH_PROFILE_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        profile: payload.profile,
+        fetchProfile: {
+          ...state.fetchProfile,
+          isLoading: false,
+          profile: payload.profile,
+        },
       };
     case types.FETCH_PROFILE_ERROR:
       return {
         ...state,
-        isLoading: false,
-        isError: true,
-        error: payload.error,
+        fetchProfile: {
+          ...state.fetchProfile,
+          isLoading: false,
+          isError: true,
+          error: payload.error,
+        },
       };
+      case types.FETCH_PROFILE_ARTICLES_START:
+        return {
+          ...state,
+          fetchArticles: {
+            ...state.fetchArticles,
+            isLoading: true,
+            isError: false,
+            error: null,
+          },
+        };
+      case types.FETCH_PROFILE_ARTICLES_SUCCESS:
+        return {
+          ...state,
+          fetchArticles: {
+            ...state.fetchArticles,
+            isLoading: false,
+            articles: payload.articles,
+            articlesCount: payload.articlesCount
+          },
+        };
+      case types.FETCH_PROFILE_ARTICLES_ERROR:
+        return {
+          ...state,
+          fetchArticles: {
+            ...state.fetchArticles,
+            isLoading: false,
+            isError: true,
+            error: payload.error,
+          },
+        };
     default:
       return state;
   }
