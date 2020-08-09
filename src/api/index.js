@@ -53,6 +53,17 @@ const Article = {
       article: { body, description, tagList, title },
     });
   },
+  postComment(slug, body) {
+    return axios.post(`/articles/${slug}/comments`, {
+      comment: { body },
+    });
+  },
+  favoriteArticle(slug) {
+    return axios.post(`/articles/${slug}/favorite`);
+  },
+  unFavoriteArticle(slug) {
+    return axios.delete(`/articles/${slug}/favorite`);
+  },
 };
 
 const Tags = {

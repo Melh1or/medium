@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../components/Loading";
 import TagList from "../../components/TagList";
 import Comment from "./components/Comment";
+import CommentForm from "./components/CommentForm";
 
 const Article = () => {
   const dispatch = useDispatch();
@@ -25,15 +26,23 @@ const Article = () => {
   if (articleProps.isError) return <p>Article not found!</p>;
   if (articleProps.item === null) return <Loading />;
 
-  const {
-    author,
-    body,
-    createdAt,
-    description,
-    favoritesCount,
-    title,
-    tagList,
-  } = articleProps.item;
+  const { author, body, createdAt, description, favoritesCount, favorited, title, tagList } = articleProps.item;
+  const favoriteTitle = favorited ? "Unfavorite" : "Favorite"
+  const favoriteClasses = favorited ? "btn btn-sm btn-outline-primary" : "btn btn-sm btn-primary"
+
+  const commentFormHandler = (body) => {
+    dispatch(articleOperations.postComment(slug, body));
+  }
+
+  const favoriteClick = () => {
+    if (favorited) {
+      dispatch(articleOperations.unFavoriteArticle(slug))
+    } else {
+      dispatch(articleOperations.favoriteArticle(slug))
+    }
+  }
+
+  console.log("components render", favorited)
 
   return (
     <div className="article-page">
@@ -73,7 +82,6 @@ const Article = () => {
 
           <TagList tagList={tagList} />
         </div>
-
         <hr />
 
         <div className="article-actions">
@@ -92,9 +100,9 @@ const Article = () => {
               &nbsp; Follow {author.username}
             </button>
             &nbsp;
-            <button className="btn btn-sm btn-outline-primary">
+            <button className={favoriteClasses} onClick={favoriteClick}>
               <i className="ion-heart"></i>
-              &nbsp; Favorite Post{" "}
+              &nbsp; {favoriteTitle}
               <span className="counter">({favoritesCount})</span>
             </button>
           </div>
@@ -102,30 +110,12 @@ const Article = () => {
 
         <div className="row">
           <div className="col-xs-12 col-md-8 offset-md-2">
-            <form className="card comment-form">
-              <div className="card-block">
-                <textarea
-                  className="form-control"
-                  placeholder="Write a comment..."
-                  rows="3"
-                />
-              </div>
-              <div className="card-footer">
-                <img
-                  src="http://i.imgur.com/Qr71crq.jpg"
-                  className="comment-author-img"
-                />
-                <button className="btn btn-sm btn-primary">Post Comment</button>
-              </div>
-            </form>
+            <CommentForm commentFormHandler={commentFormHandler} />
 
-            {commentsProps.isLoading || commentsProps.items === null ? (
-              <Loading />
-            ) : (
-              commentsProps.items.map((comment) => (
-                <Comment key={comment.id} comment={comment} />
-              ))
-            )}
+            {commentsProps.isLoading || commentsProps.items === null
+              ? <Loading />
+              : commentsProps.items.map((comment) => <Comment key={comment.id} comment={comment} />)}
+       
           </div>
         </div>
       </div>

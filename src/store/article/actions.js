@@ -38,6 +38,63 @@ const fetchArticleCommentsError = (error) => ({
   },
 });
 
+// post comment
+const postCommentStart = () => ({
+  type: types.POST_COMMENT_START,
+});
+
+const postCommentSuccess = (comment) => ({
+  type: types.POST_COMMENT_SUCCESS,
+  payload: {
+    comment,
+  },
+});
+
+const postCommentError = (error) => ({
+  type: types.POST_COMMENT_ERROR,
+  payload: {
+    error,
+  },
+});
+
+// favorite article
+const favoriteArticleStart = () => ({
+  type: types.FAVORITE_ARTICLE_START,
+});
+
+const favoriteArticleSuccess = (article) => ({
+  type: types.FAVORITE_ARTICLE_SUCCESS,
+  payload: {
+    article,
+  },
+});
+
+const favoriteArticleError = (error) => ({
+  type: types.FAVORITE_ARTICLE_ERROR,
+  payload: {
+    error,
+  },
+});
+
+// un favorite article
+const unFavoriteArticleStart = () => ({
+  type: types.UN_FAVORITE_ARTICLE_START,
+});
+
+const unFavoriteArticleSuccess = (article) => ({
+  type: types.UN_FAVORITE_ARTICLE_SUCCESS,
+  payload: {
+    article,
+  },
+});
+
+const unFavoriteArticleError = (error) => ({
+  type: types.UN_FAVORITE_ARTICLE_ERROR,
+  payload: {
+    error,
+  },
+});
+
 // exports
 export default {
   fetchArticleStart,
@@ -46,4 +103,14 @@ export default {
   fetchArticleCommentsStart,
   fetchArticleCommentsSuccess,
   fetchArticleCommentsError,
+  fetchArticleError,
+  postCommentStart,
+  postCommentSuccess,
+  postCommentError,
+  favoriteArticleStart,
+  favoriteArticleSuccess,
+  favoriteArticleError,
+  unFavoriteArticleStart,
+  unFavoriteArticleSuccess,
+  unFavoriteArticleError,
 };
