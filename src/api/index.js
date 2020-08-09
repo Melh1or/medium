@@ -18,6 +18,19 @@ const Auth = {
       password,
     });
   },
+  getViewer() {
+    try {
+      const token = localStorage.getItem("token");
+
+      return axios.get("/user", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 
 const Feed = {
@@ -32,8 +45,15 @@ const Article = {
   },
 };
 
+const Tags = {
+  fetchTags() {
+    return axios.get("/tags");
+  },
+};
+
 export default {
   Auth,
   Feed,
   Article,
+  Tags,
 };

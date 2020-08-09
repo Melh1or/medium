@@ -1,37 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { tagsOperations, tagsSelectors } from "../store/tags";
+import Loading from "./Loading";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const { isLoading, tags } = useSelector(tagsSelectors.getTags);
+
+  useEffect(() => {
+    if (tags === null) {
+      dispatch(tagsOperations.fetchTags());
+    }
+  }, []);
+
   return (
-    <div class="col-md-3">
-      <div class="sidebar">
+    <div className="col-md-3">
+      <div className="sidebar">
         <p>Popular Tags</p>
 
-        {/* <div class="tag-list">
-          <a href="" class="tag-pill tag-default">
-            programming
-          </a>
-          <a href="" class="tag-pill tag-default">
-            javascript
-          </a>
-          <a href="" class="tag-pill tag-default">
-            emberjs
-          </a>
-          <a href="" class="tag-pill tag-default">
-            angularjs
-          </a>
-          <a href="" class="tag-pill tag-default">
-            react
-          </a>
-          <a href="" class="tag-pill tag-default">
-            mean
-          </a>
-          <a href="" class="tag-pill tag-default">
-            node
-          </a>
-          <a href="" class="tag-pill tag-default">
-            rails
-          </a>
-        </div> */}
+        {isLoading || tags === null ? (
+          <Loading />
+        ) : (
+          <div className="tag-list">
+            {tags.map((tag, i) => (
+              <Link key={i} to={""} className="tag-pill tag-default">
+                {tag}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

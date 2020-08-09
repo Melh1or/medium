@@ -17,7 +17,8 @@ export const routes = {
   register: "/register",
   create: "/create",
   settings: "/settings",
-  article: "/article/:slug"
+  article: "/article/:slug",
+  profile: "/profiles/:username"
 };
 
 const Router = () => (

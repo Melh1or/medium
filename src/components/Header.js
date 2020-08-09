@@ -1,8 +1,47 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import { NavLink, Link, generatePath } from "react-router-dom";
 import { routes } from "../pages/routes";
+import { useSelector } from "react-redux";
+import { viewerSelectors } from "../store/viewer";
 
 const Header = () => {
+  const viewer = useSelector(viewerSelectors.getViewer);
+
+  const guestMenu = (
+    <Fragment>
+      <li className="nav-item">
+        <NavLink to={routes.login} className="nav-link">
+          Sign in
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink to={routes.register} className="nav-link">
+          Sign up
+        </NavLink>
+      </li>
+    </Fragment>
+  );
+
+  const authMenu = (
+    <Fragment>
+      <li className="nav-item">
+        <NavLink className="nav-link" to={routes.create}>
+          <i className="ion-compose"></i>&nbsp;New Post
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to={routes.settings}>
+          <i className="ion-gear-a"></i>&nbsp;Settings
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to={"/user"}>
+          {viewer && viewer.username}
+        </NavLink>
+      </li>
+    </Fragment>
+  );
+
   return (
     <nav className="navbar navbar-light">
       <div className="container">
@@ -15,16 +54,7 @@ const Header = () => {
               Home
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink to={routes.login} className="nav-link">
-              Sign in
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to={routes.register} className="nav-link">
-              Sign up
-            </NavLink>
-          </li>
+          {viewer ? authMenu : guestMenu}
         </ul>
       </div>
     </nav>

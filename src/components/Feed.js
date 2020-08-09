@@ -3,7 +3,7 @@ import Article from "./Article";
 
 const Feed = ({ articles = [] }) => {
   return articles.map((article) => (
-    <Article key={article.id} article={article} />
+    <Article key={article.slug} article={article} />
   ));
 };
 

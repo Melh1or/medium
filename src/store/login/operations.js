@@ -10,7 +10,7 @@ const login = ({ email, password }) => async (dispatch) => {
 
     localStorage.setItem("token", res.data.user.token);
 
-    dispatch(viewerActions.saveViewer(res.data));
+    dispatch(viewerActions.saveViewer(res.data.user));
     dispatch(actions.loginSuccess());
   } catch (error) {
     console.log(error);

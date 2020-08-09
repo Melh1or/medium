@@ -6,6 +6,7 @@ import register from "./register";
 import viewer from "./viewer";
 import feed from "./feed";
 import article from "./article";
+import tags from "./tags";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [thunk];
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   register,
   viewer,
   feed,
-  article
+  article,
+  tags
 });
 
 const store = createStore(

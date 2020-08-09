@@ -2,11 +2,11 @@ import actions from "./actions";
 import { viewerActions } from "../viewer";
 import Api from "../../api/index";
 
-const fetchFeed = () => async (dispatch) => {
+const fetchFeed = (limit = 10, offset = 0) => async (dispatch) => {
   try {
     dispatch(actions.fetchFeedStart());
 
-    const res = await Api.Feed.fetchFeed({ limit: 10, offset: 0 });
+    const res = await Api.Feed.fetchFeed({ limit, offset });
 
     dispatch(actions.fetchFeedSuccess(res.data));
   } catch (error) {
