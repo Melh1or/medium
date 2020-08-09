@@ -1,6 +1,8 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "https://conduit.productionready.io/api";
+const token = localStorage.getItem("token");
+axios.defaults.headers.common.Authorization = `Token ${token}`;
 
 const Auth = {
   login({ email, password }) {
@@ -42,6 +44,14 @@ const Feed = {
 const Article = {
   fetchArticle(slug) {
     return axios.get(`/articles/${slug}`);
+  },
+  fetchArticleComments(slug) {
+    return axios.get(`/articles/${slug}/comments`);
+  },
+  createArticle({ body, description, tagList, title }) {
+    return axios.post("/articles", {
+      article: { body, description, tagList, title },
+    });
   },
 };
 

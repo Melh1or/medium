@@ -14,6 +14,21 @@ const fetchArticle = (slug) => async (dispatch) => {
   }
 };
 
+const fetchArticleComments = (slug) => async (dispatch) => {
+  try {
+    dispatch(actions.fetchArticleCommentsStart());
+
+    const res = await Api.Article.fetchArticleComments(slug);
+
+    dispatch(actions.fetchArticleCommentsSuccess(res.data.comments));
+  } catch (error) {
+    console.log(error);
+    dispatch(actions.fetchArticleCommentsError(error));
+  }
+};
+
+
 export default {
   fetchArticle,
+  fetchArticleComments,
 };

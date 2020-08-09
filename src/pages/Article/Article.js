@@ -6,18 +6,24 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Loading from "../../components/Loading";
 import TagList from "../../components/TagList";
+import Comment from "./components/Comment";
 
 const Article = () => {
   const dispatch = useDispatch();
   const { slug } = useParams();
-  const props = useSelector(articleSelectors.getArticle);
+
+  const articleProps = useSelector(articleSelectors.getArticleFromRedux(slug));
+  const commentsProps = useSelector(articleSelectors.getArticleComments);
 
   useEffect(() => {
-    dispatch(articleOperations.fetchArticle(slug));
+    if (articleProps.item === null) {
+      dispatch(articleOperations.fetchArticle(slug));
+    }
+    dispatch(articleOperations.fetchArticleComments(slug));
   }, []);
 
-  if (props.isError) return <p>Article not found!</p>
-  if (props.isLoading || props.article === null) return <Loading />;
+  if (articleProps.isError) return <p>Article not found!</p>;
+  if (articleProps.item === null) return <Loading />;
 
   const {
     author,
@@ -26,8 +32,8 @@ const Article = () => {
     description,
     favoritesCount,
     title,
-    tagList
-  } = props.article;
+    tagList,
+  } = articleProps.item;
 
   return (
     <div className="article-page">
@@ -112,6 +118,14 @@ const Article = () => {
                 <button className="btn btn-sm btn-primary">Post Comment</button>
               </div>
             </form>
+
+            {commentsProps.isLoading || commentsProps.items === null ? (
+              <Loading />
+            ) : (
+              commentsProps.items.map((comment) => (
+                <Comment key={comment.id} comment={comment} />
+              ))
+            )}
           </div>
         </div>
       </div>
