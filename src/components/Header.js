@@ -26,16 +26,19 @@ const Header = () => {
     <Fragment>
       <li className="nav-item">
         <NavLink className="nav-link" to={routes.create}>
-          <i className="ion-compose"></i>&nbsp;New Post
+          <i className="ion-compose" />&nbsp;New Post
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink className="nav-link" to={routes.settings}>
-          <i className="ion-gear-a"></i>&nbsp;Settings
+          <i className="ion-gear-a"/>&nbsp;Settings
         </NavLink>
       </li>
       <li className="nav-item">
-        <NavLink className="nav-link" to={`/profiles/${viewer.username}`}>
+        <NavLink
+          to={generatePath(routes.profile, { username: viewer.username })}
+          className="nav-link"
+        >
           {viewer && viewer.username}
         </NavLink>
       </li>

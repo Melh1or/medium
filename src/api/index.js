@@ -72,6 +72,9 @@ const Article = {
 const Profiles = {
   getProfile(username) {
     return axios.get(`/profiles/${username}`)
+  },
+  updateProfile(user) {
+    return axios.put(`/user`, { user })
   }
 }
 

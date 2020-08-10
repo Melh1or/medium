@@ -12,6 +12,7 @@ import Home from "./Home/Home";
 import Article from "./Article/Article";
 import CreateArticle from "./CreateArticle/CreateArticle";
 import Profile from "./Profile/Profile";
+import Settings from "./Settings/Settings";
 
 export const routes = {
   home: "/",
@@ -20,7 +21,7 @@ export const routes = {
   create: "/create",
   settings: "/settings",
   article: "/article/:slug",
-  profile: "/profiles/:username"
+  profile: "/profiles/:username",
 };
 
 const Router = () => (
@@ -33,6 +34,7 @@ const Router = () => (
       <Route path={routes.article} component={Article} />
       <Route path={routes.create} component={CreateArticle} />
       <Route path={routes.profile} component={Profile} />
+      <Route path={routes.settings} component={Settings} />
     </Switch>
     <Footer />
   </BrowserRouter>

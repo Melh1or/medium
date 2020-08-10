@@ -2,11 +2,13 @@ import React from "react";
 import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { profileOperations, profileSelectors } from "../../store/profile";
+import { viewerSelectors } from "../../store/viewer";
+import { routes } from "../routes";
 
 import Loading from "../../components/Loading";
-import { viewerSelectors } from "../../store/viewer";
 import Article from "./components/Article";
 
 const Profile = () => {
@@ -29,18 +31,18 @@ const Profile = () => {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-10 offset-md-1">
-              <img src={profile.image} className="user-img" />
+              <img src={profile.image} className="user-img" alt="" />
               <h4>{profile.username}</h4>
               <p>{profile.bio || ""}</p>
 
               {viewer.username === profile.username ? (
-                <button className="btn btn-sm btn-outline-secondary action-btn">
-                  <i className="ion-gear-a"></i>
+                <Link to={routes.settings} className="btn btn-sm btn-outline-secondary action-btn">
+                  <i className="ion-gear-a" />
                   &nbsp; Edit Profile Settings
-                </button>
+                </Link>
               ) : (
                 <button className="btn btn-sm btn-outline-secondary action-btn">
-                  <i className="ion-plus-round"></i>
+                  <i className="ion-plus-round" />
                   &nbsp; Follow {profile.username}
                 </button>
               )}

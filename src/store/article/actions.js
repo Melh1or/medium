@@ -103,7 +103,6 @@ export default {
   fetchArticleCommentsStart,
   fetchArticleCommentsSuccess,
   fetchArticleCommentsError,
-  fetchArticleError,
   postCommentStart,
   postCommentSuccess,
   postCommentError,

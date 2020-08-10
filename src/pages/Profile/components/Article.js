@@ -10,7 +10,7 @@ const Article = ({
     <div className="article-preview">
       <div className="article-meta">
         <Link to={generatePath(routes.profile, { username: author.username })}>
-          <img src={author.image} />
+          <img src={author.image} alt="" />
         </Link>
         <div className="info">
           <Link
@@ -22,7 +22,7 @@ const Article = ({
           <span className="date">{createdAt}</span>
         </div>
         <button className="btn btn-outline-primary btn-sm pull-xs-right">
-          <i className="ion-heart"></i> {favoritesCount}
+          <i className="ion-heart" /> {favoritesCount}
         </button>
       </div>
       <Link

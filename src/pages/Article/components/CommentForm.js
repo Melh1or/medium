@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const CommentForm = ({ commentFormHandler }) => {
   const [value, setValue] = useState("")
-  
+
   const onSubmit = e => {
     e.preventDefault()
     commentFormHandler(value)
@@ -24,6 +24,7 @@ const CommentForm = ({ commentFormHandler }) => {
         <img
           src="http://i.imgur.com/Qr71crq.jpg"
           className="comment-author-img"
+          alt=""
         />
         <button className="btn btn-sm btn-primary" type="submit">Post Comment</button>
       </div>

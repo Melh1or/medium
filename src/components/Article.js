@@ -11,25 +11,23 @@ const Article = ({
     slug,
     tagList,
     favoritesCount,
-    favorited,
     createdAt,
-    body,
   },
 }) => {
   return (
     <div className="article-preview">
       <div className="article-meta">
-        <Link to={`/profiles/${author.username}`}>
-          <img src={author.image} />
+        <Link to={generatePath(routes.profile, { username: author.username })}>
+          <img src={author.image} alt="" />
         </Link>
         <div className="info">
-          <Link to={`/profiles/${author.username}`} className="author">
+          <Link to={generatePath(routes.profile, { username: author.username })} className="author">
             {author.username}
           </Link>
           <span className="date">{createdAt}</span>
         </div>
         <button className="btn btn-outline-primary btn-sm pull-xs-right">
-          <i className="ion-heart"></i> {favoritesCount}
+          <i className="ion-heart" /> {favoritesCount}
         </button>
       </div>
       <Link

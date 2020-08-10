@@ -1,5 +1,4 @@
 import actions from "./actions";
-import { viewerActions } from "../viewer";
 import Api from "../../api/index";
 
 const fetchFeed = (limit = 10, offset = 0) => async (dispatch) => {

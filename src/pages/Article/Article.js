@@ -50,7 +50,7 @@ const Article = () => {
 
           <div className="article-meta">
             <Link to="">
-              <img src={author.image} />
+              <img src={author.image} alt="" />
             </Link>
             <div className="info">
               <Link to="" className="author">
@@ -59,12 +59,12 @@ const Article = () => {
               <span className="date">{createdAt}</span>
             </div>
             <button className="btn btn-sm btn-outline-secondary">
-              <i className="ion-plus-round"></i>
+              <i className="ion-plus-round" />
               &nbsp; Follow {author.username}
             </button>
             &nbsp;&nbsp;
             <button className="btn btn-sm btn-outline-primary">
-              <i className="ion-heart"></i>
+              <i className="ion-heart" />
               &nbsp; Favorite Post{" "}
               <span className="counter">({favoritesCount})</span>
             </button>
@@ -113,7 +113,7 @@ const Article = () => {
             {commentsProps.isLoading || commentsProps.items === null
               ? <Loading />
               : commentsProps.items.map((comment) => <Comment key={comment.id} comment={comment} />)}
-       
+
           </div>
         </div>
       </div>
